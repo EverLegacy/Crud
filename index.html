@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App de lista de tareas</title>
+    
+    <!-- BootStrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    
+    <!-- BootStrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row p-5">
+            <div class="col-12 col-md-8">
+                <h1>APP LISTA DE TAREAS</h1>
+            </div>
+            <div class="col-12 col-md-4">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> 
+                    <i class="bi bi-plus-circle-fill"></i> 
+                    Agregar una nueva tarea
+                </button>
+            </div>
+        </div>
+        <div id="listaTareas"></div>
+    </div>
+
+    <!-- Modal for Adding Task -->
+    <form name="formulario" id="formulario" action="index.html" method="post">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar una nueva tarea</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                        <div class="row my-3">
+                            <div class="col-12">
+                                <label for="nombre">Nombre:</label>
+                                <input type="text" required class="form-control" name="nombre" id="nombre">
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-12">
+                                <label for="fecha">Fecha:</label>
+                                <input type="date" required class="form-control" name="fecha" id="fecha">
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-12">
+                                <label for="descripcion">Descripción:</label>
+                                <textarea name="descripcion" required class="form-control" id="descripcion" cols="30" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-12">
+                                <label for="video">Video URL:</label>
+                                <input type="url" class="form-control" name="video" id="video">
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-12">
+                                <label for="audio">Audio URL:</label>
+                                <input type="url" class="form-control" name="audio" id="audio">
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-12">
+                                <label for="imagen">Image URL:</label>
+                                <input type="url" class="form-control" name="imagen" id="imagen">
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary" id="btnGuardar">Guardar cambios</button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Modal for Editing Task -->
+    <form name="formularioEditar" id="formularioEditar" action="index.html" method="post">
+        <div class="modal fade" id="exampleModalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar una tarea</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                        <div class="row my-3">
+                            <div class="col-12">
+                                <label for="nombreEditar">Nombre:</label>
+                                <input type="text" required class="form-control" name="nombreEditar" id="nombreEditar">
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-12">
+                                <label for="fechaEditar">Fecha:</label>
+                                <input type="date" required class="form-control" name="fechaEditar" id="fechaEditar">
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-12">
+                                <label for="descripcionEditar">Descripción:</label>
+                                <textarea name="descripcionEditar" required class="form-control" id="descripcionEditar" cols="30" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-12">
+                                <label for="videoEditar">Video URL:</label>
+                                <input type="url" class="form-control" name="videoEditar" id="videoEditar">
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-12">
+                                <label for="audioEditar">Audio URL:</label>
+                                <input type="url" class="form-control" name="audioEditar" id="audioEditar">
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-12">
+                                <label for="imagenEditar">Image URL:</label>
+                                <input type="url" class="form-control" name="imagenEditar" id="imagenEditar">
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="idTarea" id="idTarea">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-success" id="btnGuardarEditar">Guardar cambios</button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- BootStrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" 
+    crossorigin="anonymous"></script>
+
+    <!-- JS Personalizado -->
+    <script src="js/index.js"></script>
+</body>
+</html>
